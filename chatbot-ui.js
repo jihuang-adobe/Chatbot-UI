@@ -12,7 +12,7 @@ function init() {
     document.getElementsByTagName('head')[0].appendChild(script);
 
     //--------------------------- Important Variables----------------------------
-    botLogoPath = "./imgs/bot-logo.png"
+    botLogoPath = "https://jihuang-adobe.github.io/Chatbot-UI/imgs/bot-logo.png"
 
     //--------------------------- Chatbot Frontend -------------------------------
     const chatContainer = document.getElementById("chat-container");
