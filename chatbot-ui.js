@@ -180,8 +180,7 @@ function send(message) {
         url: host,
         type: 'POST',
         contentType: 'application/json',
-        data: JSON.stringify({
-            "question": message,
+        data: message,
         }),
         success: function(data, textStatus) {
             if (data != null) {
