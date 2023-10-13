@@ -291,8 +291,8 @@ function chatbotTheme(theme) {
     }
 
     const dark = {
-        color: "#353200",
-        background: "linear-gradient(19deg, #353200 0%, #353200 100%)"
+        color: "#5C5C5C",
+        background: "linear-gradient(19deg, #5C5C5C 0%, #5C5C5C 100%)"
     }
 
     if (theme === "orange") {
