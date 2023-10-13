@@ -180,8 +180,7 @@ function send(message) {
         url: host,
         type: 'POST',
         contentType: 'application/json',
-        data: message,
-        }),
+        data: JSON.stringify(message),
         success: function(data, textStatus) {
             if (data != null) {
                 setBotResponse(data);
@@ -217,12 +216,12 @@ function setBotResponse(val) {
                 //check if there is text message
                 console.log(BotResponse);
                 if (val[i].hasOwnProperty("text")) {
-                    const botMsg = val[i].text;
+                    const botMsg = val[i].text.replaceAll('\n', '<br />');
                     if (botMsg.includes("password")) {
                         chatInput.type = "password";
                         passwordInput = true;
                     }
-                    var BotResponse = `<div class='bot-msg'><img class='bot-img' src ='${botLogoPath}' /><span class='msg'>${val[i].text}</span></div>`;
+                    var BotResponse = `<div class='bot-msg'><img class='bot-img' src ='${botLogoPath}' /><span class='msg'>${botMsg}</span></div>`;
                     $(BotResponse).appendTo('.chat-area').hide().fadeIn(1000);
                 }
 
@@ -291,7 +290,10 @@ function chatbotTheme(theme) {
         background: "linear-gradient(19deg, #21D4FD 0%, #B721FF 100%)"
     }
 
-
+    const dark = {
+        color: "#353200",
+        background: "linear-gradient(19deg, #353200 0%, #353200 100%)"
+    }
 
     if (theme === "orange") {
         root.style.setProperty('--chat-window-color-theme', orange.color);
@@ -301,15 +303,18 @@ function chatbotTheme(theme) {
         root.style.setProperty('--chat-window-color-theme', purple.color);
         gradientHeader.style.backgroundImage = purple.background;
         chatSubmit.style.backgroundColor = purple.color;
+    } else if (theme === "dark") {
+        root.style.setProperty('--chat-window-color-theme', dark.color);
+        gradientHeader.style.backgroundImage = dark.background;
+        chatSubmit.style.backgroundColor = dark.color;
     }
 }
 
 function createChatBot(hostURL, botLogo, title, welcomeMessage, inactiveMsg, theme = "blue") {
-
     host = hostURL;
     botLogoPath = botLogo;
     inactiveMessage = inactiveMsg;
-    init()
+    init();
     const msg = document.querySelector(".msg");
     msg.innerText = welcomeMessage;
 
