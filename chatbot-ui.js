@@ -175,12 +175,21 @@ function send(message) {
     chatInput.type = "text"
     passwordInput = false;
     chatInput.focus();
-    console.log("User Message:", message)
+    console.log("User Message:", message);
+
+    var bodyDOM = $('body').clone();
+    $('#chat-container, script', bodyDOM).remove();
+    var bodyDOMText = bodyDOM.text().replace(/(\r\n|\n|\r)/gm, '');
+
+    const request = {
+        "question": message,
+        "seedtext": bodyDOMText
+    }
     $.ajax({
         url: host,
         type: 'POST',
         contentType: 'application/json',
-        data: JSON.stringify(message),
+        data: JSON.stringify(request),
         success: function(data, textStatus) {
             if (data != null) {
                 setBotResponse(data);
