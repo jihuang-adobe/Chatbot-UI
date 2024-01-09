@@ -180,7 +180,8 @@ function send(message) {
     var bodyDOM = $('body').clone();
     $('#chat-container, script', bodyDOM).remove();
     var bodyDOMText = bodyDOM.text().replace(/(\r\n|\n|\r)/gm, '');
-
+    bodyDOMText = bodyDOMText.replace(/\s{2,}/g, ' ');
+    
     const request = {
         "question": message,
         "seedtext": bodyDOMText
