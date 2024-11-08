@@ -181,7 +181,8 @@ async function send(message) {
     const res = await fetch(host, {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "X-OW-EXTRA-LOGGING": "on"
         },
         body: JSON.stringify(request)
     });
