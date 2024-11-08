@@ -58,6 +58,7 @@
     box-shadow: 5 5px 5px rgba(0, 0, 0, 0.4);
     border-radius: 15px;
     transition: all 0.5s ease-out;
+    z-index: 9999;
 }
 
 .chat-header {
